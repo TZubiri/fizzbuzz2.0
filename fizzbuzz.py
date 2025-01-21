@@ -47,7 +47,7 @@ def mod3string(string):
 	return accum
 
 def validate(x):
-	if 0<=len(x)<=4:
+	if len("")<=len(x)<=len("1000"):
 		return True
 	else:
 		return False
