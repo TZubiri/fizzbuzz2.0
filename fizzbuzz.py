@@ -47,7 +47,7 @@ def mod3string(string):
 	return accum
 
 def validate(x):
-	if 0<len(x)<=4:
+	if 0<=len(x)<=4:
 		return True
 	else:
 		return False
@@ -63,6 +63,9 @@ for x in DATA:
 			pass
 		else:
 			print("")
+			continue
+		if x == "":
+			print("Cronk")
 			continue
 
 		div3 = mod3string(x) == '0'	
