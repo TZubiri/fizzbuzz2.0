@@ -1,5 +1,5 @@
 
-DATA = ["1", "2" ,"3" ,"4","5", "6", "7", "8", "123","", "105","180","blabla", "bla180","0"]
+DATA = ["1", "2" ,"3" ,"4","5", "6", "7", "8", "123","", "105","180","blabla", "bla180","0","14.0","14.1","15.0","15.000","15.00001","15.1","15.15","123.123.123"]
 
 
 
@@ -47,18 +47,19 @@ def mod3string(string):
 	return accum
 
 def validate(x):
-	if len("")<=len(x)<=len("1000"):
-		return True
-	else:
-		return False
+
+
 	for char in x:
-		if x not in "0123456789":
+		if char not in "0123456789.,-":
 			return False
+	return True
 	
 
-for x in DATA:
-	try:
+for original_x in DATA:
 
+	x = original_x
+	#debug print(x+"=",end="")
+	try:
 		if validate(x):
 			pass
 		else:
@@ -67,7 +68,28 @@ for x in DATA:
 		if x == "":
 			print("Cronk")
 			continue
+		x = x.replace(",","").replace("-","")
 
+		if "." in x:
+			parts = x.split(".")
+
+			if len(parts) != len("12"):
+				print("")
+				continue
+			whole,part= parts[0],parts[1]
+			indivisible = False
+			for char in part:
+				if char != "0":
+					indivisible = True
+					break
+			if indivisible:
+				indivisible = False
+				print(x)
+				continue
+			x= whole
+
+			
+		
 		div3 = mod3string(x) == '0'	
 		div5 = divisibleby5(x)
 		if div3:
@@ -75,7 +97,7 @@ for x in DATA:
 		if div5:
 			print("Buzz",end="")
 		if not div3 and not div5:
-			print(x,end="")
+			print(original_x,end="")
 		print("") #newline
 	except Exception as e:
 		print(e)
