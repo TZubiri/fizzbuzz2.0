@@ -92,6 +92,9 @@ for original_x in DATA:
 		
 		div3 = mod3string(x) == '0'	
 		div5 = divisibleby5(x)
+		if div3 and div5:
+			print("Bazz")
+			continue
 		if div3:
 			print("Fizz",end="")
 		if div5:
